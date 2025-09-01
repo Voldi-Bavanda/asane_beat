@@ -1,0 +1,100 @@
+
+{% block content %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/b.css'%}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+<nav class="navbar navbar-expand-lg  navbar-custom" >
+    <div class="container">
+        <a class="navbar-brand" href="#"><img src="{% static 'image/YOKA.png' %}" width="140px" height="140px" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Artistes
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'beats_disponibles' %}">beat</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="container">
+    <!-- Barre de recherche -->
+    <form method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" class="form-control" name="search" placeholder="Rechercher un artiste..." value="{{ search_query }}">
+            <button class="btn btn-primary" type="submit">Rechercher</button>
+        </div>
+    </form>
+
+    <h1>Beats Disponibles</h1>
+    <div class="row">
+        {% for beat in beats %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ beat.title }}</h5>
+                    <p class="card-text">Auteur: {{ beat.author }}</p>
+                    <audio controls controlsList="nodownload" class="w-100">
+                        <source src="{{ beat.audio_file.url }}" type="audio/mpeg">
+                        Votre navigateur ne supporte pas l'élément audio.
+                    </audio>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const audioElements = document.querySelectorAll('audio');
+                    
+                            audioElements.forEach(function(audio) {
+                                audio.addEventListener('loadedmetadata', function() {
+                                    if (audio.duration > 45) {
+                                        audio.addEventListener('timeupdate', function () {
+                                            if (audio.currentTime > 45) {
+                                                audio.pause();
+                                                audio.currentTime = 0;
+                                            }
+                                        });
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                    
+                    <a class="a" href="https://docs.google.com/forms/d/e/1FAIpQLSeBZaDb5-a__4OlaTURVIoykNaYIN-61FfZowYNyOSU5aAzqQ/viewform">Achéte</a>
+                    <p class="mt-2">Prix: ${{ beat.price }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+<style>
+    .a{
+        text-decoration: none;
+        background: #0084e6;
+        color: white;
+        padding: 5px;
+        justify-content: right;
+        margin-top: 5px;
+    }
+</style>

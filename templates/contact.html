@@ -1,0 +1,124 @@
+{% block content %}
+<style>
+    .contact-section {
+        background: linear-gradient(to right, #1e3c72, #2a5298);
+        color: #fff;
+        padding: 60px 0;
+    }
+
+    .card-offer {
+        background: #ffffff;
+        color: #333;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+
+    .card-offer:hover {
+        transform: translateY(-5px);
+    }
+
+    .btn-custom {
+        background-color: #2a5298;
+        color: #fff;
+        border-radius: 50px;
+        padding: 10px 25px;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .btn-custom:hover {
+        background-color: #1e3c72;
+        color: #fff;
+    }
+
+    .info-box {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+</style>
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/b.css'%}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+<nav class="navbar navbar-expand-lg  navbar-custom" >
+    <div class="container">
+        <a class="navbar-brand" href="#"><img src="{% static 'image/YOKA.png' %}" width="140px" height="140px" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Artistes
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'beats_disponibles' %}">beat</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container py-5">
+    <h1 class="text-center mb-5">📞 Contactez-nous</h1>
+
+    <div class="row justify-content-center">
+        <!-- Informations de contact -->
+        <div class="col-md-6">
+            <div class="info-box">
+                <h4><i class="fas fa-phone"></i> Téléphone</h4>
+                <p>+243 853048932</p>
+            </div>
+            <div class="info-box">
+                <h4><i class="fas fa-envelope"></i> Email</h4>
+                <p><a href="mailto:vodagroupe7@gmail.com" style="color: #fff;">vodagroupe7@gmail.com</a>vodagroupe7@gmail.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offres d'accompagnement -->
+   <!-- Offres d'accompagnement -->
+<div class="row mt-5">
+    <div class="col-md-6 mb-4">
+        <div class="card-offer">
+            <h3>🎤 Accompagnement pour vos concerts</h3>
+            <p>Notre équipe vous aide à planifier, organiser et promouvoir vos concerts pour une visibilité maximale.</p>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vodagroupe7@gmail.com&su=Demande%20Accompagnement%20Concert" class="btn btn-custom mt-3" target="_blank">Nous contacter</a>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card-offer">
+            <h3>🏢 Louez un espace musical</h3>
+            <p>Affichez et diffusez vos chansons dans nos espaces dédiés à la musique urbaine et culturelle.</p>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vodagroupe7@gmail.com&su=Location%20Espace%20Musical" class="btn btn-custom mt-3" target="_blank">Faire une demande</a>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card-offer">
+            <h3>🎧 Achat ou diffusion de beats</h3>
+            <p>Intéressé par nos beats ? Contactez-nous pour acheter ou diffuser vos instrumentales sur notre plateforme.</p>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vodagroupe7@gmail.com&su=Achat%20ou%20diffusion%20de%20beats" class="btn btn-custom mt-3" target="_blank">Faire une offre</a>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
